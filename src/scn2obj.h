@@ -10,6 +10,6 @@ typedef unsigned short u16;
 typedef signed char s8;
 typedef unsigned char u8;
 
-#define VERSION "0.3"
+#define VERSION "0.4"
 
 #endif
