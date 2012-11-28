@@ -85,9 +85,9 @@ void scnExportObj(CScn * scn, char * name, float scaling)
 
         string solidname;
         if(getSolidNameFromEntities(scn,idx,solidname))
-            fprintf(obj,"\ng SOLID_%03u_%s\n",idx,solidname.c_str());
+            fprintf(obj,"\ng %s\n",solidname.c_str());
         else
-            fprintf(obj,"\ng SOLID_%03u\n",idx);
+            ERROR("Solid %u is not connected to any entity. It shouldn't exist",idx);
 
 
         for (i=0; i < n_verts; i++) {
