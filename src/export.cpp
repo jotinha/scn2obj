@@ -85,7 +85,7 @@ void scnExportObj(CScn * scn, char * name, float scaling)
 
         string solidname;
         if(getSolidNameFromEntities(scn,idx,solidname))
-            fprintf(obj,"\ng %s\n",solidname.c_str());
+            fprintf(obj,"\ng %s_%u\n",solidname.c_str(),idx);
         else
             ERROR("Solid %u is not connected to any entity. It shouldn't exist",idx);
 
@@ -162,7 +162,7 @@ void scnExportObj(CScn * scn, char * name, float scaling)
             for (u32 pi = 0; pi < cell->n_portals; pi++)
             {
                scnPortal_t * portal = &(cell->portals[pi]);
-               fprintf(obj,"\ng PORTAL_%u-%u_%s\n",ci,pi,portal->name);
+               fprintf(obj,"\ng portal_%u-%u_%s\n",ci,pi,portal->name);
 
                for (u32 i=0; i < portal->n_verts; i++)
                {
