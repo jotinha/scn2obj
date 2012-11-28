@@ -234,7 +234,7 @@ public:
     vector<string> keys;   //Do we need a vector for this?
     vector<string> values;
 
-    string getField(string key);
+    bool getField(string key,string& val);
 
     //constructor
     CScnEnt() {srefidx=0; n_fields=0; keys.clear(); values.clear();};
@@ -244,7 +244,6 @@ class CScn
 {
 private:
     void reset();
-    CScnEnt * ents;
     int loadFile(std::ifstream * file);
 
     int loadHeader(std::ifstream * file);
@@ -255,6 +254,7 @@ private:
 public:
     scnHeader_t * header;
     CScnSolid * solids;
+    CScnEnt * ents;
 
     u32 getVersion(){
         return header->version;}

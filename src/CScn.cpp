@@ -630,20 +630,30 @@ CScnEnt * CScn::getCell(u32 idx)
     for (int i=0; i < cells.size(); i++)
     {
         celli = cells[i];
-        val=celli->getField("cell_index");
-        if (atoi(val.c_str()) == idx)
-            return celli;
+        if (celli->getField("cell_index",val))
+        {
+            if (atoi(val.c_str()) == idx)
+                return celli;
+        }
+        else
+            ERROR("Cell %d has no key 'cell_index'",i);
+
     }
     return NULL;
 }
 
-string CScnEnt::getField(string key)
+bool CScnEnt::getField(string key,string& value)
 {
     for (int i=0; i<n_fields; i++)
+    {
         if (str_equiv(keys[i].c_str(),key.c_str()))
-            return values[i];
+        {
+            value = values[i];
+            return true;
+        }
+    }
 
-    return NULL;
+    return false;
 }
 
 

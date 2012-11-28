@@ -83,7 +83,12 @@ void scnExportObj(CScn * scn, char * name, float scaling)
         u32 n_verts=solid->n_verts;
         u32 n_uvpos=solid->n_uvpos;
 
-        fprintf(obj,"\ng solid%03u\n",idx);
+        string solidname;
+        if(getSolidNameFromEntities(scn,idx,solidname))
+            fprintf(obj,"\ng SOLID%03u_%s\n",idx,solidname.c_str());
+        else
+            fprintf(obj,"\ng SOLID%03u\n",idx);
+
 
         for (i=0; i < n_verts; i++) {
             vert2str(tmp,sizeof tmp, &solid->verts[i],scaling);
@@ -200,6 +205,17 @@ void scnExportObj(CScn * scn, char * name, float scaling)
     fclose(obj);
     fclose(mtl);
     SAY("done.\n");
+}
+
+bool getSolidNameFromEntities(CScn * scn, int sidx, string& solidname)
+{
+    for (int i=0; i < scn->header->n_ents; i++)
+    {
+        CScnEnt * ent = &(scn->ents[i]);
+        if (sidx == ent->srefidx)      //found, get classname
+            return ent->getField("classname",solidname);
+    }
+    return false;
 }
 
 
