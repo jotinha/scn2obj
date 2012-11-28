@@ -77,7 +77,7 @@ class CScn(object):
         self.entities = [loadEntity() for _ in range(self.header.n_ents)]
         
     
-    def searchEnts(self,classname,mode='re_search'):
+    def searchEnts(self,classname,mode='exact'):
         """
         search entities and return those that match classname
         
