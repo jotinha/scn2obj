@@ -85,9 +85,9 @@ void scnExportObj(CScn * scn, char * name, float scaling)
 
         string solidname;
         if(getSolidNameFromEntities(scn,idx,solidname))
-            fprintf(obj,"\ng SOLID%03u_%s\n",idx,solidname.c_str());
+            fprintf(obj,"\ng SOLID_%03u_%s\n",idx,solidname.c_str());
         else
-            fprintf(obj,"\ng SOLID%03u\n",idx);
+            fprintf(obj,"\ng SOLID_%03u\n",idx);
 
 
         for (i=0; i < n_verts; i++) {
@@ -162,7 +162,7 @@ void scnExportObj(CScn * scn, char * name, float scaling)
             for (u32 pi = 0; pi < cell->n_portals; pi++)
             {
                scnPortal_t * portal = &(cell->portals[pi]);
-               fprintf(obj,"\ng PORTAL_%s\n",portal->name);
+               fprintf(obj,"\ng PORTAL_%u-%u_%s\n",ci,pi,portal->name);
 
                for (u32 i=0; i < portal->n_verts; i++)
                {
