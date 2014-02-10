@@ -1,5 +1,4 @@
 #include "scn2obj.h"
-#include <iostream>
 #include <fstream>
 
 #define SAY printf
