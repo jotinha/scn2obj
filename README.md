@@ -24,6 +24,8 @@ Compiling
 
 Compilation should be pretty straightforward. Only using standard C/C++ libraries.
 
+Run `make build` or simply `g++ src/*.cpp -o scn2edit`
+
 License
 -------
 scn2obj is covered by the new BSD license. See LICENSE.
